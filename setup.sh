@@ -12,6 +12,9 @@ kubectl apply -f k8s/ns.yaml
 kubectl apply -f k8s/db.yaml
 kubectl apply -f k8s/app.yaml
 
+# Wait for app start
+sleep 10
+
 # Check pods
 kubectl get pods -n my-app
 
