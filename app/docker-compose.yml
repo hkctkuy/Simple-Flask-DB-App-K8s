@@ -1,0 +1,11 @@
+version: '2'
+services:
+
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    image: ${IMAGE_NAME}
+    container_name: ${CONTAINER_NAME}
+    ports:
+      - "${HOST_ADDRESS}:5000"

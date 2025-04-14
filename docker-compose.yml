@@ -1,0 +1,39 @@
+version: '2'
+services:
+
+  db:
+    build:
+      dockerfile: Dockerfile
+      context: db
+    image: ${DB_IMAGE_NAME}
+    container_name: ${DB_CONTAINER_NAME}
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    volumes:
+      - .:/app
+    ports:
+      - "${DB_HOST_ADDRESS}:3306"
+    networks:
+      - my_network
+
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: app
+    image: ${APP_IMAGE_NAME}
+    container_name: ${APP_CONTAINER_NAME}
+    depends_on:
+      - db
+    ports:
+      - "${APP_HOST_ADDRESS}:5000"
+    links:
+      - db:db
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
