@@ -1,0 +1,11 @@
+# configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+  namespace: my-app
+data:
+  MYSQL_ROOT_PASSWORD: "root"
+  MYSQL_USER: "app"
+  MYSQL_PASSWORD: "pass"
+  MYSQL_DATABASE: "appdb"

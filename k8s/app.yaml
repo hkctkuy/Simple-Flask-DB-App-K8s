@@ -17,11 +17,19 @@ spec:
       - name: app
         image: app
         imagePullPolicy: Never
+        env:
+        - name: MYSQL_USER
+          value: MYSQL_USER
+        - name: MYSQL_PASSWORD
+          value: MYSQL_PASSWORD
+        - name: MYSQL_DATABASE
+          value: MYSQL_DATABASE
+        - name: MYSQL_HOST
+          value: "db"
+        - name: MYSQL_PORT
+          value: "3306"
         ports:
         - containerPort: 5000
-        env:
-        - name: DB_HOST
-          value: "db"  # Uses the service name for DNS resolution
 ---
 apiVersion: v1
 kind: Service
